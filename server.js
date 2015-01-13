@@ -1,4 +1,5 @@
 var http = require('http');
+var path = require('path');
 var connect = require('connect');
 var proxyInjector = require('./lib/proxy-injector');
 
@@ -9,11 +10,15 @@ var options = {
   }
 };
 
+var testScriptPath = './test.js';
+var testScript = path.resolve(__dirname, testScriptPath);
+
 var scripts = {
   js: [
-    'alert("IT WORKED");'
+    testScript
   ]
-}
+};
+
 
 var proxy = proxyInjector.createProxyServer(options, scripts);
 
