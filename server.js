@@ -1,6 +1,10 @@
 var http = require('http');
-
+var connect = require('connect');
 var proxyInjector = require('./lib/proxy-injector');
-var onRequest = proxyInjector();
 
-http.createServer(onRequest).listen(8000);
+var app = connect();
+
+var onRequest = proxyInjector();
+app.use(onRequest);
+
+http.createServer(app).listen(8000);
