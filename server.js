@@ -15,7 +15,7 @@ program
   .usage('[options] <file ...>')
   .option('-u, --target-url [url]', 'The target url to proxy', 'http://jquery.com/')
   .option('-d, --target-dir [path]', 'The path of the target directory to watch', './test')
-  .option('-p, --port <n>', 'The proxy port', parseInt)
+  .option('-p, --port <n>', 'The proxy port', parseInt, '8000')
   .parse(process.argv);
 
 // resolve options args
@@ -31,8 +31,8 @@ var targetDir = path.resolve(__dirname, program.targetDir);
 // Config options
 var options = {
   targetUrl: targetUrl,
-  proxyPort: program.port || 8000, // local proxy server port
-  targetDir: targetDir // directory containing scripts and stylesheets for injection
+  targetDir: targetDir, // directory containing scripts and stylesheets for injection
+  proxyPort: program.port // local proxy server port
 };
 
 var proxy = proxyInjector.createProxyServer(options);
