@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/*jshint node:true*/
 
 var program = require('commander');
 var http = require('http');
@@ -18,8 +19,8 @@ program
 
 // resolve options args
 var targetUrl = program.targetUrl;
-if (!(targetUrl.substring(0, 4) === "http")) {
-  targetUrl = 'http://' + targetUrl
+if (targetUrl.substring(0, 4) !== "http") {
+  targetUrl = 'http://' + targetUrl;
 }
 targetUrl = url.parse(targetUrl);
 
