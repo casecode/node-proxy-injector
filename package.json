@@ -19,6 +19,7 @@
   "dependencies": {
     "cheerio": "^0.18.0",
     "connect": "^3.3.4",
+    "livereload": "^0.3.4",
     "q": "^1.1.2"
   }
 }

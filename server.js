@@ -10,12 +10,11 @@ var options = {
   }
 };
 
-var testScriptPath = './test.js';
-var testScript = path.resolve(__dirname, testScriptPath);
+var testJS = path.resolve(__dirname, './test/test.js');
 
 var scripts = {
   js: [
-    testScript
+    testJS
   ]
 };
 
@@ -26,3 +25,10 @@ var app = connect();
 app.use(proxy);
 
 http.createServer(app).listen(8000);
+
+var livereload = require('livereload');
+var server = livereload.createServer({
+  originalPath: "http://localhost:8000/"
+});
+var testDir = path.resolve(__dirname, './test');
+server.watch(testDir);
