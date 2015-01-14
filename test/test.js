@@ -1,5 +1,10 @@
 (function() {
+  if (!window.jQuery) {
+    console.log("jQuery not loaded");
+    return;
+  }
+
   $(document).ready(function() {
-    console.log("IT WORKS!");
+    $('div').addClass('red-border-test');
   });
 })();

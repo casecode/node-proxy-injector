@@ -1,34 +1,58 @@
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
 var connect = require('connect');
 var proxyInjector = require('./lib/proxy-injector');
+var livereload = require('livereload');
 
+
+// Config options
 var options = {
-  url: {
+  // url to be proxied
+  targetUrl: {
     hostname: '63rdstreetproductions.com',
     path: '/about'
-  }
+  },
+  // local proxy server port
+  proxyPort: 8000,
+  // directory containing scripts and stylesheets for injection
+  targetDir: path.resolve(__dirname, './test')
 };
 
-var testJS = path.resolve(__dirname, './test/test.js');
+var targetFiles = scanDirForFiles(options.targetDir);
 
-var scripts = {
-  js: [
-    testJS
-  ]
-};
-
-
-var proxy = proxyInjector.createProxyServer(options, scripts);
+var proxy = proxyInjector.createProxyServer(options, targetFiles);
 
 var app = connect();
 app.use(proxy);
 
-http.createServer(app).listen(8000);
+http.createServer(app).listen(options.proxyPort);
 
-var livereload = require('livereload');
-var server = livereload.createServer({
-  originalPath: "http://localhost:8000/"
+// Live reload server watching for files in target directory
+var livereloadServer = livereload.createServer({
+  originalPath: 'http://localhost:' + options.proxyPort
 });
-var testDir = path.resolve(__dirname, './test');
-server.watch(testDir);
+livereloadServer.watch(options.targetDir);
+
+// Find css and js files in target directory
+function scanDirForFiles(directory) {
+  var targetFiles = fs.readdirSync(directory);
+
+  var regexFilter = function(pattern) {
+    return function(file) {
+      return pattern.test(file);
+    };
+  };
+
+  var cssFilter = regexFilter(/\.css/),
+  jsFilter  = regexFilter(/\.js/);
+
+  var expandFilePath = function(file) {
+    return path.resolve(directory, file);
+  };
+
+  return {
+    css: targetFiles.filter(cssFilter).map(expandFilePath),
+    js: targetFiles.filter(jsFilter).map(expandFilePath)
+  };
+};
