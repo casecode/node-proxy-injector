@@ -8,7 +8,7 @@ var livereload = require('livereload');
 
 
 program
-  .version('0.0.1')
+  .version('0.1.0')
   .usage('[options] <file ...>')
   .option('-u, --target-url [url]', 'The target url to proxy', 'http://jquery.com/')
   .option('-d, --target-dir [path]', 'The path of the target directory to watch', './test')
