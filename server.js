@@ -27,6 +27,7 @@ http.createServer(app).listen(options.proxyPort);
 
 // Live reload server watching for files in target directory
 var livereloadServer = livereload.createServer({
-  originalPath: 'http://localhost:' + options.proxyPort
+  originalPath: 'http://localhost:' + options.proxyPort,
+  applyCSSLive: false
 });
 livereloadServer.watch(options.targetDir);
