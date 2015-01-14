@@ -1,6 +1,5 @@
 var http = require('http');
 var path = require('path');
-var fs = require('fs');
 var connect = require('connect');
 var proxyInjector = require('./lib/proxy-injector');
 var livereload = require('livereload');
