@@ -19,9 +19,7 @@ var options = {
   targetDir: path.resolve(__dirname, './test')
 };
 
-var targetFiles = scanDirForFiles(options.targetDir);
-
-var proxy = proxyInjector.createProxyServer(options, targetFiles);
+var proxy = proxyInjector.createProxyServer(options);
 
 var app = connect();
 app.use(proxy);
@@ -33,26 +31,3 @@ var livereloadServer = livereload.createServer({
   originalPath: 'http://localhost:' + options.proxyPort
 });
 livereloadServer.watch(options.targetDir);
-
-// Find css and js files in target directory
-function scanDirForFiles(directory) {
-  var targetFiles = fs.readdirSync(directory);
-
-  var regexFilter = function(pattern) {
-    return function(file) {
-      return pattern.test(file);
-    };
-  };
-
-  var cssFilter = regexFilter(/\.css/),
-  jsFilter  = regexFilter(/\.js/);
-
-  var expandFilePath = function(file) {
-    return path.resolve(directory, file);
-  };
-
-  return {
-    css: targetFiles.filter(cssFilter).map(expandFilePath),
-    js: targetFiles.filter(jsFilter).map(expandFilePath)
-  };
-};
