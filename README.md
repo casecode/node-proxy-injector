@@ -5,4 +5,4 @@
 
 ## Usage
 
-  $ node server.js -u [targetUrl] -d [targetDirectoryPath]
+  `$ node server.js -u [targetUrl] -d [targetDirectoryPath]`
