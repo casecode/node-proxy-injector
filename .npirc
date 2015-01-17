@@ -1,0 +1,18 @@
+{
+ "targetUrl": {
+  "protocol": "http:",
+  "slashes": true,
+  "auth": null,
+  "host": "jquery.com",
+  "port": null,
+  "hostname": "jquery.com",
+  "hash": null,
+  "search": null,
+  "query": null,
+  "pathname": "/",
+  "path": "/",
+  "href": "http://jquery.com/"
+ },
+ "targetDir": "./test",
+ "proxyPort": "8000"
+}
