@@ -1,6 +1,6 @@
 # node-proxy-injector
 
-  A script that allows you to proxy a remote server and inject css stylesheets and js scripts into the remote server response. The tool supports live reload, but you must have browser extensions installed and configured. For details visit http://help.livereload.com/kb/general-use/browser-extensions.
+  A script that allows you to proxy a remote server and inject css stylesheets and js scripts into the remote server response. The tool supports live reload.
 
   Note that this tool is a work in progress!
 
