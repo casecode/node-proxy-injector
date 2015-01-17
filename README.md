@@ -4,10 +4,13 @@
 
   Note that this tool is a work in progress!
 
+## Installation
+
+  `npm install -g casecode/node-proxy-injector`
 
 ## Usage
 
-  `$ node server.js`
+  `$ npi`
 
 ## Command line options
 
