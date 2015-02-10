@@ -15,7 +15,7 @@ program
   .usage('[options] <file ...>')
   .option('-u, --target-url [url]', 'The target url to proxy', 'http://jquery.com/')
   .option('-d, --target-dir [path]', 'The path of the target directory to watch', './test')
-  .option('-p, --port <n>', 'The proxy port', parseInt, '8000')
+  .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .parse(process.argv);
 
 // resolve options args
@@ -26,6 +26,16 @@ if (targetUrl.substring(0, 4) !== "http") {
 targetUrl = url.parse(targetUrl);
 
 var targetDir = path.resolve(__dirname, program.targetDir);
+
+function myParseInt(string, defaultValue) {
+  var int = parseInt(string, 10);
+
+  if (typeof int == 'number') {
+    return int;
+  } else {
+    return defaultValue;
+  }
+}
 
 
 // Config options
