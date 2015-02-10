@@ -1,10 +1,13 @@
 #!/usr/bin/env node
 /*jshint node:true*/
 
+var appname = 'npi'; // .npirc
+var rc = require('rc');
+var rcfile = '.' + appname + 'rc';
 var program = require('commander');
 var http = require('http');
 var url = require('url');
-var path = require('path');
+var fs = require('fs');
 var connect = require('connect');
 var proxyInjector = require('./lib/proxy-injector');
 var livereload = require('livereload');
@@ -17,6 +20,7 @@ program
   .option('-d, --target-dir [path]', 'The path of the target directory to watch', './test')
   .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .option('-o, --open', 'Open a browser window', false)
+  .option('-c, --create-rc', 'Create .npirc file', false)
   .parse(process.argv);
 
 // resolve options args
@@ -26,7 +30,7 @@ if (targetUrl.substring(0, 4) !== "http") {
 }
 targetUrl = url.parse(targetUrl);
 
-var targetDir = path.resolve(__dirname, program.targetDir);
+var targetDir = program.targetDir;
 
 function myParseInt(string, defaultValue) {
   var int = parseInt(string, 10);
@@ -39,12 +43,46 @@ function myParseInt(string, defaultValue) {
 }
 
 
-// Config options
-var options = {
+var config = { // defaults:
   targetUrl: targetUrl,
   targetDir: targetDir, // directory containing scripts and stylesheets for injection
   proxyPort: program.port // local proxy server port
 };
+
+// write rc or prompt w/ if already exist
+if (program.createRc) {
+  var writeConf = function () {
+    fs.writeFileSync(rcfile, JSON.stringify(config, 2, ' '));
+  };
+
+  if ( ! fs.existsSync(rcfile) ) writeConf();
+  else {
+    require('colors');
+    var prompt = require('readline-sync');
+    var diff = require('diff');
+
+    diff.diffJson(
+      JSON.parse(fs.readFileSync(rcfile).toString()),
+      config
+    ).forEach(function(part){
+      // green for additions, red for deletions
+      // grey for common parts
+      var color = part.added ? 'green' :
+        part.removed ? 'red' : 'grey';
+      process.stderr.write(part.value[color]);
+    });
+
+    console.log();
+
+    if (prompt.question('Overwrite? (y/n) :'.blue)
+      .toLowerCase() === 'y') writeConf();
+  }
+}
+
+// Config options
+var options = rc(appname, config);
+// note: defaults which are objects will be merged, not replaced
+// views: {foo:'bar'}
 
 var proxy = proxyInjector.createProxyServer(options);
 
