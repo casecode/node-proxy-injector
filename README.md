@@ -4,13 +4,13 @@
 
   Note that this tool is a work in progress!
 
-## Installation/Setup
+## Installation
 
-  * Run `npm install`
+  `npm install -g clearhead/node-proxy-injector`
 
 ## Usage
 
-  `$ node server.js`
+  `$ npi`
 
 ## Command line options
 
