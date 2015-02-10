@@ -55,7 +55,6 @@ console.log("Proxy server listening on port", options.proxyPort);
 
 // Live reload server watching for files in target directory
 var livereloadServer = livereload.createServer({
-  originalPath: 'http://localhost:' + options.proxyPort,
   applyCSSLive: false
-});
+}); // default port
 livereloadServer.watch(options.targetDir);
