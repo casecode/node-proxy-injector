@@ -18,10 +18,14 @@
   "homepage": "https://github.com/casecode/node-proxy-injector",
   "dependencies": {
     "cheerio": "^0.18.0",
+    "colors": "^1.0.3",
     "commander": "^2.6.0",
     "connect": "^3.3.4",
+    "diff": "^1.2.1",
     "livereload": "^0.3.4",
     "open": "0.0.5",
-    "q": "^1.1.2"
+    "q": "^1.1.2",
+    "rc": "^0.5.5",
+    "readline-sync": "^0.4.10"
   }
 }
