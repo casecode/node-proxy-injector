@@ -18,6 +18,8 @@ program
   .usage('[options] <file ...>')
   .option('-u, --target-url [url]', 'The target url to proxy', 'http://jquery.com/')
   .option('-d, --target-dir [path]', 'The path of the target directory to watch', './')
+  .option('-i, --include [regex]', 'File pattern to include', '.*')
+  .option('-e, --exclude [regex]', 'File pattern to exclude', undefined)
   .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .option('-o, --open', 'Open a browser window', false)
   .option('-c, --create-rc', 'Create .npirc file', false)
@@ -45,6 +47,8 @@ function myParseInt(string, defaultValue) {
 
 var config = { // defaults:
   targetUrl: targetUrl,
+  include: program.include,
+  exclude: program.exclude,
   targetDir: targetDir, // directory containing scripts and stylesheets for injection
   proxyPort: program.port // local proxy server port
 };
