@@ -17,7 +17,7 @@ program
   .version('0.1.0')
   .usage('[options] <file ...>')
   .option('-u, --target-url [url]', 'The target url to proxy', 'http://jquery.com/')
-  .option('-d, --target-dir [path]', 'The path of the target directory to watch', './test')
+  .option('-d, --target-dir [path]', 'The path of the target directory to watch', './')
   .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .option('-o, --open', 'Open a browser window', false)
   .option('-c, --create-rc', 'Create .npirc file', false)
