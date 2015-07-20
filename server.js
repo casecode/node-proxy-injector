@@ -23,6 +23,7 @@ program
   .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .option('-o, --open', 'Open a browser window', false)
   .option('-a, --append-to [selector]', 'Selector to append files to', 'body')
+  .option('-r, --rewrite-path [regex]', 'Regex path to inject scripts on', '/')
   .option('-c, --create-rc', 'Create .npirc file', false)
   .parse(process.argv);
 
@@ -51,6 +52,7 @@ var config = { // defaults:
   include: program.include,
   exclude: program.exclude,
   appendTo: program.appendTo,
+  rewritePath: program.rewritePath,
   targetDir: targetDir, // directory containing scripts and stylesheets for injection
   proxyPort: program.port // local proxy server port
 };
