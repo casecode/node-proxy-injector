@@ -20,4 +20,5 @@
   * `-o`, `--open` Open a window to localhost:{port}. Default is `false`.
   * `-i`, `--include [regex]` Optional file pattern to include. Default is `.*`.
   * `-e`, `--exclude [regex]` Optional file pattern to exclude. Default is `undefined`.
+  * `-a`, `--append-to [selector]` Optional selector to append files to. Default is `body`.
   * `-c`, `--create-rc` Creates an RC file in the local dir. Prints + Prompts w/ diff. Default is false.
