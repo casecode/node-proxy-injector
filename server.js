@@ -22,7 +22,7 @@ program
   .option('-e, --exclude [regex]', 'File pattern to exclude', undefined)
   .option('-p, --port <n>', 'The proxy port', myParseInt, '8000')
   .option('-o, --open', 'Open a browser window', false)
-  .option('-a, --append-to', 'Selector to append files to', 'body')
+  .option('-a, --append-to [selector]', 'Selector to append files to', 'body')
   .option('-c, --create-rc', 'Create .npirc file', false)
   .parse(process.argv);
 
