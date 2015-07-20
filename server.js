@@ -50,6 +50,7 @@ var config = { // defaults:
   targetUrl: targetUrl,
   include: program.include,
   exclude: program.exclude,
+  appendTo: program.appendTo,
   targetDir: targetDir, // directory containing scripts and stylesheets for injection
   proxyPort: program.port // local proxy server port
 };
