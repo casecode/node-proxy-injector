@@ -21,4 +21,5 @@
   * `-i`, `--include [regex]` Optional file pattern to include. Default is `.*`.
   * `-e`, `--exclude [regex]` Optional file pattern to exclude. Default is `undefined`.
   * `-a`, `--append-to [selector]` Optional selector to append files to. Default is `body`.
+  * `-r`, `--rewrite-path [regex]` 'Regex path to inject scripts on. Default is `^/$`.
   * `-c`, `--create-rc` Creates an RC file in the local dir. Prints + Prompts w/ diff. Default is false.
