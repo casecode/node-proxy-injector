@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "patch": "npm version patch && npm publish && git push --follow-tags"
+    "patch": "npm version patch && git push --follow-tags && npm publish"
   },
   "bin": {
     "npi": "./server.js"
