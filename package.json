@@ -1,10 +1,14 @@
 {
   "name": "node-proxy-injector",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "A command line tool for injecting third party scripts into a proxy server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "patch": "npm version patch && git push --follow-tags && npm publish"
+  },
+  "bin": {
+    "npi": "./server.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +22,14 @@
   "homepage": "https://github.com/casecode/node-proxy-injector",
   "dependencies": {
     "cheerio": "^0.18.0",
+    "colors": "^1.0.3",
     "commander": "^2.6.0",
     "connect": "^3.3.4",
+    "diff": "^1.2.1",
     "livereload": "^0.3.4",
-    "q": "^1.1.2"
+    "open": "0.0.5",
+    "q": "^1.1.2",
+    "rc": "^0.5.5",
+    "readline-sync": "^0.4.10"
   }
 }
